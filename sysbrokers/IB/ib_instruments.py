@@ -1,13 +1,16 @@
 from dataclasses import dataclass
-from ib_insync import Future
+from ib_insync import Future, Stock
 
-from sysobjects.instruments import futuresInstrument, futuresInstrumentWithMetaData
+from sysobjects.instruments import Instrument, InstrumentWithMetaData
 
 
 def ib_futures_instrument_just_symbol(symbol):
     ibcontract = Future(symbol=symbol)
     return ibcontract
 
+def ib_equity_instrument_just_symbol(symbol):
+    ibcontract = Stock(symbol=symbol)
+    return ibcontract
 
 NOT_REQUIRED_FOR_IB = ""
 
@@ -48,8 +51,8 @@ class ibInstrumentConfigData:
         )
 
 @dataclass
-class futuresInstrumentWithIBConfigData(object):
-    instrument: futuresInstrument
+class instrumentWithIBConfigData(object):
+    instrument: Instrument
     ib_data: ibInstrumentConfigData
 
     @property
@@ -66,7 +69,7 @@ class futuresInstrumentWithIBConfigData(object):
         return self.ib_data
 
 def ib_futures_instrument(
-    futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+    futures_instrument_with_ib_data: instrumentWithIBConfigData,
 ) -> Future:
     """
     Get an IB contract which is NOT specific to a contract date
@@ -85,6 +88,28 @@ def ib_futures_instrument(
     else:
 
         ibcontract.multiplier = _resolve_multiplier(ib_data.ibMultiplier)
+
+    if ib_data.currency is NOT_REQUIRED_FOR_IB:
+        pass
+    else:
+        ibcontract.currency = ib_data.currency
+
+    return ibcontract
+
+def ib_equity_instrument(
+    equity_instrument_with_ib_data: instrumentWithIBConfigData,
+) -> Stock:
+    """
+    Get an IB contract which is NOT specific to a contract date
+    Used for getting expiry chains
+
+    :param futures_instrument_with_ib_data: instrument with .metadata suitable for IB
+    :return: IBcontract
+    """
+
+    ib_data = equity_instrument_with_ib_data.ib_data
+
+    ibcontract = Stock(ib_data.symbol, exchange=ib_data.exchange)
 
     if ib_data.currency is NOT_REQUIRED_FOR_IB:
         pass

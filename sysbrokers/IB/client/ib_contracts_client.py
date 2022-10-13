@@ -4,7 +4,7 @@ from ib_insync import Contract
 from sysbrokers.IB.client.ib_client import ibClient
 from sysbrokers.IB.ib_instruments import (
     ib_futures_instrument_just_symbol,
-    futuresInstrumentWithIBConfigData,
+    instrumentWithIBConfigData,
     ib_futures_instrument,
 )
 from sysbrokers.IB.ib_trading_hours import get_conservative_trading_hours
@@ -27,7 +27,7 @@ from sysexecution.trade_qty import tradeQuantity
 class ibContractsClient(ibClient):
     def broker_get_futures_contract_list(
         self,
-        futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+        futures_instrument_with_ib_data: instrumentWithIBConfigData,
         allow_expired: bool = False,
     ) -> list:
         ## Returns list of contract date strings YYYYMMDD
@@ -292,7 +292,7 @@ class ibContractsClient(ibClient):
 
     def _get_vanilla_ib_futures_contract_with_legs(
         self,
-        futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+        futures_instrument_with_ib_data: instrumentWithIBConfigData,
         contract_date: contractDate,
         allow_expired: bool = False,
     ) -> ibcontractWithLegs:
@@ -306,7 +306,7 @@ class ibContractsClient(ibClient):
 
     def _get_spread_ib_futures_contract(
         self,
-        futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+        futures_instrument_with_ib_data: instrumentWithIBConfigData,
         contract_date: contractDate,
         trade_list_for_multiple_legs: tradeQuantity = None,
         allow_expired: bool = False,
@@ -345,7 +345,7 @@ class ibContractsClient(ibClient):
 
     def _get_vanilla_ib_futures_contract(
         self,
-        futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+        futures_instrument_with_ib_data: instrumentWithIBConfigData,
         contract_date: contractDate,
         allow_expired: bool = False,
     ) -> Contract:

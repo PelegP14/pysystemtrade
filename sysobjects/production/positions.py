@@ -2,7 +2,7 @@ import pandas as pd
 
 from syscore.genutils import get_unique_list
 from sysobjects.contracts import futuresContract, contract_from_key
-from sysobjects.instruments import futuresInstrument
+from sysobjects.instruments import Instrument
 from sysobjects.production.tradeable_object import instrumentStrategy
 
 
@@ -34,11 +34,11 @@ class Position(object):
 
 class instrumentPosition(Position):
     def __init__(self, position: int, instrument_code: str):
-        tradeable_object = futuresInstrument(instrument_code)
+        tradeable_object = Instrument(instrument_code)
         super().__init__(position, tradeable_object)
 
     @property
-    def instrument(self) -> futuresInstrument:
+    def instrument(self) -> Instrument:
         return self.tradeable_object
 
     @property
@@ -219,7 +219,7 @@ class listOfInstrumentPositions(listOfPositions):
         return id_column_dict
 
     def position_for_instrument(self, instrument_code: str):
-        tradeable_object = futuresInstrument(instrument_code)
+        tradeable_object = Instrument(instrument_code)
         position = self.position_for_object(tradeable_object)
         return position
 

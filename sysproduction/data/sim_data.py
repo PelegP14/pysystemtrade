@@ -5,7 +5,7 @@ from sysdata.data_blob import dataBlob
 from sysdata.arctic.arctic_adjusted_prices import arcticFuturesAdjustedPricesData
 from sysdata.arctic.arctic_multiple_prices import arcticFuturesMultiplePricesData
 from sysdata.arctic.arctic_spotfx_prices import arcticFxPricesData
-from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
+from sysdata.mongodb.mongo_futures_instruments import mongoInstrumentData
 from sysdata.mongodb.mongo_roll_data import mongoRollParametersData
 
 
@@ -19,7 +19,7 @@ def get_sim_data_object_for_production(data=arg_not_supplied) -> dataBlob:
             arcticFuturesAdjustedPricesData,
             arcticFuturesMultiplePricesData,
             arcticFxPricesData,
-            mongoFuturesInstrumentData,
+            mongoInstrumentData,
             mongoRollParametersData,
         ]
     )

@@ -7,7 +7,7 @@ from syscore.objects import arg_not_supplied, missing_contract
 from syslogdiag.logger import logger
 
 from sysobjects.contract_dates_and_expiries import contractDate, expiryDate, listOfContractDateStr
-from sysobjects.instruments import futuresInstrument
+from sysobjects.instruments import Instrument
 
 
 NO_ROLL_CYCLE_PASSED = object()
@@ -57,7 +57,7 @@ class futuresContract(object):
 
     def __init__(
         self,
-        instrument_object: futuresInstrument,
+        instrument_object: Instrument,
         contract_date_object: contractDate,
         parameter_object: parametersForFuturesContract = arg_not_supplied,
         simple: bool = False,
@@ -88,7 +88,7 @@ class futuresContract(object):
     @classmethod
     def from_two_strings(futuresContract, instrument_code: str, contract_date_str: str):
 
-        instrument_object = futuresInstrument(instrument_code)
+        instrument_object = Instrument(instrument_code)
         contract_date = contractDate(contract_date_str, simple=True)
 
         return futuresContract(instrument_object, contract_date, simple=True)
@@ -176,7 +176,7 @@ class futuresContract(object):
         contract_params_dict = futures_contract_dict["contract_params"]
 
         contract_date_object = contractDate.create_from_dict(contract_date_dict)
-        instrument_object = futuresInstrument.create_from_dict(instrument_dict)
+        instrument_object = Instrument.create_from_dict(instrument_dict)
         parameter_object = parametersForFuturesContract.from_dict(contract_params_dict)
 
         return futuresContract(
@@ -288,7 +288,7 @@ def _resolve_args_for_futures_contract(
 ) -> tuple:
 
     if isinstance(instrument_object, str):
-        instrument_object = futuresInstrument(instrument_object)
+        instrument_object = Instrument(instrument_object)
 
     if (
         isinstance(contract_date_object, list)

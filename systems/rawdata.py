@@ -9,6 +9,7 @@ from syscore.pdutils import prices_to_daily_prices
 from systems.system_cache import input, diagnostic, output
 
 from sysdata.sim.futures_sim_data import futuresSimData
+from sysdata.sim.multiple_types_sim_data import MultipleTypesSimData
 from sysdata.config.configdata import Config
 
 from sysobjects.carry_data import rawCarryData
@@ -373,7 +374,22 @@ class RawData(SystemStage):
         return normalised_price_for_asset_class_aligned
 
     def rolls_per_year(self, instrument_code: str) -> int:
-        return self.parent.data.get_rolls_per_year(instrument_code)
+        try:
+            rolls = self.parent.data.get_rolls_per_year(instrument_code)
+        except AttributeError:
+            found = False
+            if isinstance(self.parent.data,MultipleTypesSimData):
+                for data in self.parent.data.data_list:
+                    try:
+                        rolls = data.get_rolls_per_year(instrument_code)
+                        found = True
+                        break
+                    except (AttributeError, KeyError):
+                        continue
+            if not found:
+                self.log.warn("couldn't get rolls per year. assuming equity and using 0")
+                rolls = 0
+        return rolls
 
     @input
     def get_instrument_raw_carry_data(self, instrument_code: str) -> rawCarryData:
@@ -397,10 +413,21 @@ class RawData(SystemStage):
         2015-12-11 17:08:14  97.9675    NaN         201812         201903
         2015-12-11 19:33:39  97.9875    NaN         201812         201903
         """
-
-        instrcarrydata = self.parent.data.get_instrument_raw_carry_data(instrument_code)
+        if isinstance(self.parent.data,MultipleTypesSimData):
+            found = False
+            for data in self.parent.data.data_list:
+                try:
+                    instrcarrydata = data.get_instrument_raw_carry_data(instrument_code)
+                    found = True
+                    break
+                except AttributeError:
+                    continue
+            if not found:
+                raise AttributeError("couldn't get carry data in any of the datasets")
+        else:
+            instrcarrydata = self.parent.data.get_instrument_raw_carry_data(instrument_code)
         if len(instrcarrydata) == 0:
-            raise Exception(
+            raise KeyError(
                 "Data for %s not found! Remove from instrument list, or add to config.ignore_instruments"
                 % instrument_code
             )
@@ -634,7 +661,11 @@ class RawData(SystemStage):
         2015-12-11    97.9875
         Freq: B, Name: PRICE, dtype: float64
         """
-        prices = self.get_instrument_raw_carry_data(instrument_code).PRICE
+        try:
+            prices = self.get_instrument_raw_carry_data(instrument_code).PRICE
+        except (AttributeError,KeyError):
+            self.log.warn("couldn't calculate carry for denominator price. Assuming equity and using daily price")
+            prices = self.get_daily_prices(instrument_code)
         daily_prices = prices.resample("1B").last()
 
         return daily_prices

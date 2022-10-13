@@ -8,7 +8,7 @@ import pandas as pd
 EMPTY_INSTRUMENT = ""
 
 
-class futuresInstrument(object):
+class Instrument(object):
     def __init__(self, instrument_code: str):
         self._instrument_code = instrument_code
 
@@ -20,9 +20,9 @@ class futuresInstrument(object):
         return self.instrument_code == EMPTY_INSTRUMENT
 
     @classmethod
-    def create_from_dict(futuresInstrument, input_dict):
+    def create_from_dict(Instrument, input_dict):
         # Might seem pointless, but (a) is used in original code, (b) gives a nice consistent feel
-        return futuresInstrument(input_dict["instrument_code"])
+        return Instrument(input_dict["instrument_code"])
 
     def as_dict(self):
         # Might seem pointless, but (a) is used in original code, (b) gives a nice consistent feel
@@ -104,8 +104,8 @@ class instrumentMetaData(object):
         return str(self.as_dict())
 
 @dataclass
-class futuresInstrumentWithMetaData:
-    instrument: futuresInstrument
+class InstrumentWithMetaData:
+    instrument: Instrument
     meta_data: instrumentMetaData
 
     @property
@@ -123,19 +123,19 @@ class futuresInstrumentWithMetaData:
         return meta_data_dict
 
     @classmethod
-    def from_dict(futuresInstrumentWithMetaData, input_dict):
+    def from_dict(InstrumentWithMetaData, input_dict):
         instrument_code = input_dict.pop("instrument_code")
-        instrument = futuresInstrument(instrument_code)
+        instrument = Instrument(instrument_code)
         meta_data = instrumentMetaData.from_dict(input_dict)
 
-        return futuresInstrumentWithMetaData(instrument, meta_data)
+        return InstrumentWithMetaData(instrument, meta_data)
 
     @classmethod
-    def create_empty(futuresInstrumentWithMetaData):
-        instrument = futuresInstrument(EMPTY_INSTRUMENT)
+    def create_empty(InstrumentWithMetaData):
+        instrument = Instrument(EMPTY_INSTRUMENT)
         meta_data = instrumentMetaData()
 
-        instrument_with_metadata = futuresInstrumentWithMetaData(instrument, meta_data)
+        instrument_with_metadata = InstrumentWithMetaData(instrument, meta_data)
 
         return instrument_with_metadata
 
@@ -148,7 +148,7 @@ class futuresInstrumentWithMetaData:
 
         return instrument_matches and meta_data_matches
 
-class listOfFuturesInstrumentWithMetaData(list):
+class listOfInstrumentWithMetaData(list):
     def as_df(self):
         instrument_codes = [
             instrument_object.instrument_code for instrument_object in self

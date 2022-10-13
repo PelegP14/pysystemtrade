@@ -1,11 +1,11 @@
 import dataclasses
 
 from syscore.fileutils import get_filename_for_package
-from sysdata.futures.instruments import futuresInstrumentData
+from sysdata.futures.instruments import InstrumentData
 from syscore.objects import arg_not_supplied
 from sysobjects.instruments import (
-    futuresInstrument,
-    futuresInstrumentWithMetaData,
+    Instrument,
+    InstrumentWithMetaData,
     instrumentMetaData,
     META_FIELD_LIST
 )
@@ -16,7 +16,7 @@ INSTRUMENT_CONFIG_PATH = "data.futures.csvconfig"
 CONFIG_FILE_NAME = "instrumentconfig.csv"
 
 
-class csvFuturesInstrumentData(futuresInstrumentData):
+class csvInstrumentData(InstrumentData):
     """
     Get data about instruments from a special configuration used for initialising the system
 
@@ -25,7 +25,7 @@ class csvFuturesInstrumentData(futuresInstrumentData):
     def __init__(
         self,
         datapath=arg_not_supplied,
-        log=logtoscreen("csvFuturesInstrumentData"),
+        log=logtoscreen("csvInstrumentData"),
     ):
 
         super().__init__(log=log)
@@ -71,7 +71,7 @@ class csvFuturesInstrumentData(futuresInstrumentData):
 
     def _get_instrument_data_without_checking(
         self, instrument_code: str
-    ) -> futuresInstrumentWithMetaData:
+    ) -> InstrumentWithMetaData:
         all_instrument_data = self.get_all_instrument_data_as_df()
         instrument_with_meta_data = get_instrument_with_meta_data_object(
             all_instrument_data, instrument_code
@@ -87,7 +87,7 @@ class csvFuturesInstrumentData(futuresInstrumentData):
         )
 
     def _add_instrument_data_without_checking_for_existing_entry(
-        self, instrument_object: futuresInstrumentWithMetaData
+        self, instrument_object: InstrumentWithMetaData
     ):
         raise NotImplementedError(
             "Can't overwrite part of .csv use write_all_instrument_data_from_df"
@@ -103,7 +103,7 @@ class csvFuturesInstrumentData(futuresInstrumentData):
 
 def get_instrument_with_meta_data_object(
     all_instrument_data: pd.DataFrame, instrument_code: str
-) -> futuresInstrumentWithMetaData:
+) -> InstrumentWithMetaData:
     config_for_this_instrument = all_instrument_data.loc[instrument_code]
     config_items = all_instrument_data.columns
 
@@ -111,10 +111,10 @@ def get_instrument_with_meta_data_object(
         config_for_this_instrument, config_items
     )
 
-    instrument = futuresInstrument(instrument_code)
+    instrument = Instrument(instrument_code)
     meta_data = instrumentMetaData.from_dict(meta_data_dict)
 
-    instrument_with_meta_data = futuresInstrumentWithMetaData(instrument, meta_data)
+    instrument_with_meta_data = InstrumentWithMetaData(instrument, meta_data)
 
     return instrument_with_meta_data
 

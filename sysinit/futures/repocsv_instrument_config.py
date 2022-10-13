@@ -4,14 +4,14 @@ Populate a mongo DB collection with instrument data from the instrument data in 
 """
 from syscore.genutils import new_removing_existing
 from syscore.interactive import true_if_answer_is_yes
-from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
-from sysdata.csv.csv_instrument_data import csvFuturesInstrumentData
+from sysdata.mongodb.mongo_futures_instruments import mongoInstrumentData
+from sysdata.csv.csv_instrument_data import csvInstrumentData
 from sysdata.data_blob import dataBlob
 from sysproduction.data.prices import diagPrices
 
 def copy_instrument_config_from_csv_to_mongo(data: dataBlob):
-    data_out = mongoFuturesInstrumentData(data.mongo_db)
-    data_in = csvFuturesInstrumentData()
+    data_out = mongoInstrumentData(data.mongo_db)
+    data_in = csvInstrumentData()
 
     print("Transferring from %s to %s" % (str(data_in),
                                           str(data_out)))

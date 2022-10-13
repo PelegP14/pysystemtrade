@@ -1,9 +1,9 @@
-from sysdata.futures.instruments import futuresInstrumentData
+from sysdata.futures.instruments import InstrumentData
 
 from syslogdiag.log_to_screen import logtoscreen
 
 
-class brokerFuturesInstrumentData(futuresInstrumentData):
+class brokerInstrumentData(InstrumentData):
     """
     Extends the baseData object to a data source that reads in and writes prices for specific futures contracts
 

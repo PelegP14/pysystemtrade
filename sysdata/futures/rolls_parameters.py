@@ -7,7 +7,7 @@ USE_CHILD_CLASS_ROLL_PARAMS_ERROR = (
 )
 
 
-class rollParametersMissing(Exception):
+class rollParametersMissing(KeyError):
     pass
 
 

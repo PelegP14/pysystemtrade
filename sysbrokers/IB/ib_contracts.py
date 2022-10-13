@@ -2,7 +2,7 @@ from ib_insync import Contract as ibContract, Contract, ComboLeg
 import re
 
 from sysbrokers.IB.ib_instruments import (
-    futuresInstrumentWithIBConfigData,
+    instrumentWithIBConfigData,
     ib_futures_instrument,
 )
 from sysbrokers.IB.ib_positions import resolveBS
@@ -13,7 +13,7 @@ from sysobjects.contract_dates_and_expiries import contractDate
 
 def resolve_multiple_expiries(
     ibcontract_list: list,
-    futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+    futures_instrument_with_ib_data: instrumentWithIBConfigData,
 ) -> ibContract:
 
     code = futures_instrument_with_ib_data.instrument_code
@@ -79,7 +79,7 @@ class ibcontractWithLegs(object):
 
 
 def get_ib_contract_with_specific_expiry(
-    futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+    futures_instrument_with_ib_data: instrumentWithIBConfigData,
     contract_date: contractDate,
 ) -> Contract:
 
@@ -102,7 +102,7 @@ def get_ib_contract_with_specific_expiry(
 
 def resolve_unique_contract_from_ibcontract_list(
     ibcontract_list: list,
-    futures_instrument_with_ib_data: futuresInstrumentWithIBConfigData,
+    futures_instrument_with_ib_data: instrumentWithIBConfigData,
 ) -> Contract:
     if len(ibcontract_list) == 0:
         # No contracts found

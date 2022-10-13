@@ -1,14 +1,14 @@
 from syscore.objects import arg_not_supplied, missing_data
 
-from sysdata.futures.instruments import futuresInstrumentData
-from sysobjects.instruments import futuresInstrumentWithMetaData
+from sysdata.futures.instruments import InstrumentData
+from sysobjects.instruments import InstrumentWithMetaData
 from sysdata.mongodb.mongo_generic import mongoDataWithSingleKey
 from syslogdiag.log_to_screen import logtoscreen
 
 INSTRUMENT_COLLECTION = "futures_instruments"
 
 
-class mongoFuturesInstrumentData(futuresInstrumentData):
+class mongoInstrumentData(InstrumentData):
     """
     Read and write data class to get instrument data
 
@@ -42,7 +42,7 @@ class mongoFuturesInstrumentData(futuresInstrumentData):
             # shouldn't happen...
             raise Exception("Data for %s gone AWOL" % instrument_code)
 
-        instrument_object = futuresInstrumentWithMetaData.from_dict(result_dict)
+        instrument_object = InstrumentWithMetaData.from_dict(result_dict)
 
         return instrument_object
 

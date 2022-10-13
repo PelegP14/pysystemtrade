@@ -14,7 +14,7 @@ from sysobjects.dict_of_named_futures_per_contract_prices import (
     price_name,
     contract_column_names,
 )
-from sysobjects.instruments import futuresInstrument
+from sysobjects.instruments import Instrument
 from sysobjects.multiple_prices import futuresMultiplePrices, singleRowMultiplePrices
 
 from sysproduction.data.contracts import dataContracts
@@ -253,7 +253,7 @@ def update_multiple_prices_on_roll(
 
     diag_contracts = dataContracts(data)
 
-    instrument_object = futuresInstrument(instrument_code)
+    instrument_object = Instrument(instrument_code)
     # Old forward contract -> New price contract
     new_price_contract_date_object = (
         diag_contracts.get_contract_date_object_with_roll_parameters(

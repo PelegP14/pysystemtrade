@@ -6,15 +6,15 @@ import pandas as pd
 from syscore.objects import missing_data
 from sysdata.base_data import baseData
 from sysobjects.instruments import (
-    futuresInstrumentWithMetaData,
-    listOfFuturesInstrumentWithMetaData,
+    InstrumentWithMetaData,
+    listOfInstrumentWithMetaData,
 )
 from syslogdiag.log_to_screen import logtoscreen
 
 USE_CHILD_CLASS_ERROR = "You need to use a child class of futuresInstrumentData"
 
 
-class futuresInstrumentData(baseData):
+class InstrumentData(baseData):
     """
     Read and write data class to get instrument data
 
@@ -23,9 +23,9 @@ class futuresInstrumentData(baseData):
     """
 
     def __repr__(self):
-        return "futuresInstrumentData base class - DO NOT USE"
+        return "InstrumentData base class - DO NOT USE"
 
-    def __init__(self, log=logtoscreen("futuresInstrumentData")):
+    def __init__(self, log=logtoscreen("InstrumentData")):
         super().__init__(log=log)
 
     def keys(self) -> list:
@@ -57,13 +57,13 @@ class futuresInstrumentData(baseData):
 
     def get_all_instrument_data_as_list_of_instrument_objects(
         self,
-    ) -> listOfFuturesInstrumentWithMetaData:
+    ) -> listOfInstrumentWithMetaData:
         all_instrument_codes = self.get_list_of_instruments()
         all_instrument_objects = [
             self.get_instrument_data(instrument_code)
             for instrument_code in all_instrument_codes
         ]
-        list_of_instrument_objects = listOfFuturesInstrumentWithMetaData(
+        list_of_instrument_objects = listOfInstrumentWithMetaData(
             all_instrument_objects
         )
 
@@ -87,11 +87,11 @@ class futuresInstrumentData(baseData):
 
     def get_instrument_data(
         self, instrument_code: str
-    ) -> futuresInstrumentWithMetaData:
+    ) -> InstrumentWithMetaData:
         if self.is_code_in_data(instrument_code):
             return self._get_instrument_data_without_checking(instrument_code)
         else:
-            return futuresInstrumentWithMetaData.create_empty()
+            return InstrumentWithMetaData.create_empty()
 
     def delete_instrument_data(self, instrument_code: str, are_you_sure: bool = False):
         self.log.label(instrument_code=instrument_code)
@@ -119,7 +119,7 @@ class futuresInstrumentData(baseData):
 
     def add_instrument_data(
         self,
-        instrument_object: futuresInstrumentWithMetaData,
+        instrument_object: InstrumentWithMetaData,
         ignore_duplication: bool = False,
     ):
         instrument_code = instrument_object.instrument_code
@@ -151,6 +151,6 @@ class futuresInstrumentData(baseData):
         raise NotImplementedError(USE_CHILD_CLASS_ERROR)
 
     def _add_instrument_data_without_checking_for_existing_entry(
-        self, instrument_object: futuresInstrumentWithMetaData
+        self, instrument_object: InstrumentWithMetaData
     ):
         raise NotImplementedError(USE_CHILD_CLASS_ERROR)

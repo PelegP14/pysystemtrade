@@ -2,7 +2,7 @@ from syscore.objects import missing_contract, success
 
 from sysobjects.contract_dates_and_expiries import contractDate, expiryDate
 from sysobjects.contracts import futuresContract, listOfFuturesContracts
-from sysobjects.instruments import futuresInstrument
+from sysobjects.instruments import Instrument
 from sysobjects.rolls import contractDateWithRollParameters
 
 from sysdata.data_blob import dataBlob
@@ -189,7 +189,7 @@ def create_contract_object_chain_from_contract_date_chain(
 
     # We have a list of contract_date objects, need futureContracts
     # create a 'bare' instrument object
-    instrument_object = futuresInstrument(instrument_code)
+    instrument_object = Instrument(instrument_code)
 
     contract_object_chain_as_list = [
         futuresContract(instrument_object, contract_date)

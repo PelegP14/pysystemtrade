@@ -34,6 +34,7 @@ class accountCosts(accountInputs):
             instrument_code = instrument_code,
             rule_variation_name = rule_variation_name
         )
+
         holding_cost = self.get_SR_holding_cost_only(instrument_code)
 
         return transaction_cost + holding_cost

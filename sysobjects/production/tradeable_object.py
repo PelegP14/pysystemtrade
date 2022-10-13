@@ -1,4 +1,4 @@
-from sysobjects.instruments import futuresInstrument
+from sysobjects.instruments import Instrument
 from sysobjects.contracts import futuresContract
 from sysobjects.contract_dates_and_expiries import contractDate
 
@@ -68,7 +68,7 @@ INSTRUMENT_CODE_KEY = "instrument_code"
 
 class instrumentStrategy(tradeableObject):
     def __init__(self, strategy_name: str, instrument_code: str):
-        instrument_object = futuresInstrument(instrument_code)
+        instrument_object = Instrument(instrument_code)
         self._instrument = instrument_object
         self._strategy_name = strategy_name
 
@@ -139,7 +139,7 @@ class futuresContractStrategy(tradeableObject):
         :param contract_id: a single contract_order_id YYYYMM, or a list of contract IDS YYYYMM for a spread order
         """
         self._contract_date = contractDate(contract_id)
-        self._instrument = futuresInstrument(instrument_code)
+        self._instrument = Instrument(instrument_code)
         self._strategy_name = strategy_name
 
     @classmethod

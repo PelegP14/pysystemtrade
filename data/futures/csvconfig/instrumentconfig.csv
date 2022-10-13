@@ -127,7 +127,7 @@ EUA,1000,0,3,0,OilGas,EUR,ECX EU carbon emissions allowance futures,0.25
 EUIRS10,1000,,,,Bond,EUR,10 year euro swapnote,
 EUIRS2,1000,,,,Bond,EUR,2 Year euro swapnote,
 EUIRS5,1000,,,,Bond,EUR,5 year euro swapnote,
-EUR,125000,0,2.46,0,FX,USD,EURUSD currency,3.01853081309044E-05
+EUR,125000,0,3,0,FX,USD,EURUSD currency,0.0001
 EUR_micro,12500,,,,FX,USD,EURUSD micro,
 EUR_mini,62500,,,,FX,USD,EURUSD mini,
 EURAUD,125000,,,,FX,AUD,EURAUD,
@@ -406,3 +406,5 @@ WHEY,44000,,,,Ags,USD,CME DRY WHEY INDEX ,
 WTI_small,100,,,,OilGas,USD,Small US Crude Oil,
 YENEUR,125000,0,1.5,0,FX,JPY,YENEUR currency,0.01
 ZINC_LME,25,,,,Metals,USD,Zinc – LME,
+SPY,1,0,0,2.5,Index,USD,SPDR S&P-500 ETF,0.07
+SPYraw,1,0,0,2.5,Index,USD,SPY raw closing price,0.07

@@ -7,7 +7,7 @@ from sysobjects.adjusted_prices import futuresAdjustedPrices
 from sysobjects.instruments import (
     assetClassesAndInstruments,
     instrumentCosts,
-    futuresInstrumentWithMetaData,
+    InstrumentWithMetaData,
 )
 from sysobjects.multiple_prices import futuresMultiplePrices
 from sysobjects.dict_of_named_futures_per_contract_prices import (
@@ -224,7 +224,7 @@ class futuresSimData(simData):
 
     def get_instrument_meta_data(
         self, instrument_code
-    ) -> futuresInstrumentWithMetaData:
+    ) -> InstrumentWithMetaData:
         """
         Get a futures instrument where the meta data is cost data
 
@@ -239,7 +239,7 @@ class futuresSimData(simData):
 
     def get_instrument_object_with_meta_data(
         self, instrument_code: str
-    ) -> futuresInstrumentWithMetaData:
+    ) -> InstrumentWithMetaData:
         """
         Get data about an instrument, as a futuresInstrument
 

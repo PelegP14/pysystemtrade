@@ -3,16 +3,16 @@ import pandas as pd
 from sysbrokers.IB.ib_instruments import (
     NOT_REQUIRED_FOR_IB,
     ibInstrumentConfigData,
-    futuresInstrumentWithIBConfigData,
+    instrumentWithIBConfigData,
 )
 from sysbrokers.IB.ib_connection import connectionIB
-from sysbrokers.broker_instrument_data import brokerFuturesInstrumentData
+from sysbrokers.broker_instrument_data import brokerInstrumentData
 
 from syscore.fileutils import get_filename_for_package
 from syscore.genutils import value_or_npnan
 from syscore.objects import missing_instrument, missing_file
 
-from sysobjects.instruments import futuresInstrument
+from sysobjects.instruments import Instrument
 
 from syslogdiag.log_to_screen import logtoscreen
 
@@ -28,7 +28,7 @@ def read_ib_config_from_file() -> IBconfig:
     return IBconfig(df)
 
 
-class ibFuturesInstrumentData(brokerFuturesInstrumentData):
+class ibFuturesInstrumentData(brokerInstrumentData):
     """
     Extends the baseData object to a data source that reads in and writes prices for specific futures contracts
 
@@ -81,7 +81,7 @@ class ibFuturesInstrumentData(brokerFuturesInstrumentData):
 
     def get_futures_instrument_object_with_IB_data(
         self, instrument_code: str
-    ) -> futuresInstrumentWithIBConfigData:
+    ) -> instrumentWithIBConfigData:
         new_log = self.log.setup(instrument_code=instrument_code)
 
         try:
@@ -164,7 +164,7 @@ class ibFuturesInstrumentData(brokerFuturesInstrumentData):
 
 def get_instrument_object_from_config(
     instrument_code: str, config: IBconfig = None
-) -> futuresInstrumentWithIBConfigData:
+) -> instrumentWithIBConfigData:
     if config is None:
         config = read_ib_config_from_file()
 
@@ -179,7 +179,7 @@ def get_instrument_object_from_config(
     ignore_weekly = config_row.IgnoreWeekly.values[0]
 
     # We use the flexibility of futuresInstrument to add additional arguments
-    instrument = futuresInstrument(instrument_code)
+    instrument = Instrument(instrument_code)
     ib_data = ibInstrumentConfigData(
         symbol,
         exchange,
@@ -189,7 +189,7 @@ def get_instrument_object_from_config(
         ignoreWeekly=ignore_weekly,
     )
 
-    futures_instrument_with_ib_data = futuresInstrumentWithIBConfigData(
+    futures_instrument_with_ib_data = instrumentWithIBConfigData(
         instrument, ib_data
     )
 

@@ -20,7 +20,7 @@ from sysdata.csv.csv_historic_orders import (
 )
 from sysdata.csv.csv_capital_data import csvCapitalData
 from sysdata.csv.csv_optimal_position import csvOptimalPositionData
-from sysdata.csv.csv_instrument_data import csvFuturesInstrumentData
+from sysdata.csv.csv_instrument_data import csvInstrumentData
 from sysdata.csv.csv_roll_state_storage import csvRollStateData
 from sysdata.csv.csv_spreads import csvSpreadsForInstrumentData
 from sysdata.csv.csv_roll_parameters import csvRollParametersData
@@ -42,7 +42,7 @@ from sysdata.mongodb.mongo_historic_orders import (
     mongoContractHistoricOrdersData,
     mongoStrategyHistoricOrdersData,
 )
-from sysdata.mongodb.mongo_futures_instruments import mongoFuturesInstrumentData
+from sysdata.mongodb.mongo_futures_instruments import mongoInstrumentData
 from sysdata.mongodb.mongo_optimal_position import mongoOptimalPositionData
 from sysdata.mongodb.mongo_roll_data import mongoRollParametersData
 from sysdata.mongodb.mongo_roll_state_storage import mongoRollStateData
@@ -134,7 +134,7 @@ def get_data_and_create_csv_directories(logname):
             csvStrategyHistoricOrdersData,
             csvCapitalData,
             csvOptimalPositionData,
-            csvFuturesInstrumentData,
+            csvInstrumentData,
             csvRollStateData,
             csvRollParametersData,
             csvFuturesContractData,
@@ -156,7 +156,7 @@ def get_data_and_create_csv_directories(logname):
             mongoContractHistoricOrdersData,
             mongoStrategyHistoricOrdersData,
             mongoFuturesContractData,
-            mongoFuturesInstrumentData,
+            mongoInstrumentData,
             mongoOptimalPositionData,
             mongoRollParametersData,
             mongoRollStateData,

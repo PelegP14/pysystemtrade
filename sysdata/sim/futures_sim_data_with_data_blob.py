@@ -2,7 +2,7 @@ from sysdata.sim.futures_sim_data import futuresSimData
 
 from sysdata.futures.adjusted_prices import futuresAdjustedPricesData
 from sysdata.fx.spotfx import fxPricesData
-from sysdata.futures.instruments import futuresInstrumentData
+from sysdata.futures.instruments import InstrumentData
 from sysdata.futures.multiple_prices import futuresMultiplePricesData
 from sysdata.futures.rolls_parameters import rollParametersData
 from sysdata.data_blob import dataBlob
@@ -10,7 +10,7 @@ from sysdata.data_blob import dataBlob
 
 from sysobjects.instruments import (
     assetClassesAndInstruments,
-    futuresInstrumentWithMetaData,
+    InstrumentWithMetaData,
 )
 from sysobjects.spot_fx_prices import fxPrices
 from sysobjects.adjusted_prices import futuresAdjustedPrices
@@ -40,8 +40,8 @@ class genericBlobUsingFuturesSimData(futuresSimData):
         return self.data.db_futures_adjusted_prices
 
     @property
-    def db_futures_instrument_data(self) -> futuresInstrumentData:
-        return self.data.db_futures_instrument
+    def db_futures_instrument_data(self) -> InstrumentData:
+        return self.data.db_instrument
 
     @property
     def db_futures_multiple_prices_data(self) -> futuresMultiplePricesData:
@@ -96,13 +96,13 @@ class genericBlobUsingFuturesSimData(futuresSimData):
 
     def get_instrument_meta_data(
         self, instrument_code: str
-    ) -> futuresInstrumentWithMetaData:
+    ) -> InstrumentWithMetaData:
         ## cost and other meta data stored in the same place
         return self.get_instrument_object_with_meta_data(instrument_code)
 
     def get_instrument_object_with_meta_data(
         self, instrument_code: str
-    ) -> futuresInstrumentWithMetaData:
+    ) -> InstrumentWithMetaData:
         instrument = self.db_futures_instrument_data.get_instrument_data(
             instrument_code
         )

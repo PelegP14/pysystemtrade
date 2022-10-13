@@ -1,7 +1,7 @@
 from syscore.genutils import sign
 from sysexecution.orders.base_orders import Order
 from sysexecution.trade_qty import tradeQuantity
-from sysobjects.instruments import futuresInstrument
+from sysobjects.instruments import Instrument
 from sysobjects.production.tradeable_object import instrumentStrategy
 
 NO_LIMIT = "No limit"
@@ -47,7 +47,7 @@ class positionLimit(object):
 
 class positionLimitForInstrument(positionLimit):
     def __init__(self, instrument_code: str, position_limit: int):
-        tradeable_object = futuresInstrument(instrument_code)
+        tradeable_object = Instrument(instrument_code)
         super().__init__(tradeable_object, position_limit)
 
     @classmethod
