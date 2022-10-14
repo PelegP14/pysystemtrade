@@ -28,7 +28,7 @@ def read_ib_config_from_file() -> IBconfig:
     return IBconfig(df)
 
 
-class ibFuturesInstrumentData(brokerInstrumentData):
+class ibInstrumentData(brokerInstrumentData):
     """
     Extends the baseData object to a data source that reads in and writes prices for specific futures contracts
 
@@ -38,25 +38,25 @@ class ibFuturesInstrumentData(brokerInstrumentData):
     """
 
     def __init__(
-        self, ibconnection: connectionIB, log=logtoscreen("ibFuturesContractData")
+        self, ibconnection: connectionIB, log=logtoscreen("ibContractData")
     ):
         super().__init__(log=log)
         self._ibconnection = ibconnection
 
     def __repr__(self):
-        return "IB Futures per contract data %s" % str(self.ibconnection)
+        return "IB per contract data %s" % str(self.ibconnection)
 
     @property
     def ibconnection(self) -> connectionIB:
         return self._ibconnection
 
     def get_brokers_instrument_code(self, instrument_code: str) -> str:
-        futures_instrument_with_ib_data = (
-            self.get_futures_instrument_object_with_IB_data(instrument_code)
+        instrument_with_ib_data = (
+            self.get_instrument_object_with_IB_data(instrument_code)
         )
-        if futures_instrument_with_ib_data is missing_instrument:
+        if instrument_with_ib_data is missing_instrument:
             return missing_instrument
-        return futures_instrument_with_ib_data.broker_symbol
+        return instrument_with_ib_data.broker_symbol
 
     def get_instrument_code_from_broker_code(self, ib_code: str) -> str:
         config = self._get_ib_config()
@@ -77,9 +77,9 @@ class ibFuturesInstrumentData(brokerInstrumentData):
         return config_row.iloc[0].Instrument
 
     def _get_instrument_data_without_checking(self, instrument_code: str):
-        return self.get_futures_instrument_object_with_IB_data(instrument_code)
+        return self.get_instrument_object_with_IB_data(instrument_code)
 
-    def get_futures_instrument_object_with_IB_data(
+    def get_instrument_object_with_IB_data(
         self, instrument_code: str
     ) -> instrumentWithIBConfigData:
         new_log = self.log.setup(instrument_code=instrument_code)
@@ -189,8 +189,8 @@ def get_instrument_object_from_config(
         ignoreWeekly=ignore_weekly,
     )
 
-    futures_instrument_with_ib_data = instrumentWithIBConfigData(
+    instrument_with_ib_data = instrumentWithIBConfigData(
         instrument, ib_data
     )
 
-    return futures_instrument_with_ib_data
+    return instrument_with_ib_data

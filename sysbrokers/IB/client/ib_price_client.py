@@ -9,6 +9,8 @@ from ib_insync import util
 from sysbrokers.IB.client.ib_client import PACING_INTERVAL_SECONDS
 from sysbrokers.IB.client.ib_contracts_client import ibContractsClient
 from sysbrokers.IB.ib_positions import resolveBS_for_list
+from sysbrokers.IB.ib_instruments_data import instrumentWithIBConfigData
+from sysbrokers.IB.ib_instruments import ib_equity_instrument
 
 from syscore.objects import missing_contract, missing_data
 from syscore.dateutils import (
@@ -63,6 +65,32 @@ class ibPriceClient(ibContractsClient):
 
         price_data = self._get_generic_data_for_contract(
             ibcontract, log=specific_log, bar_freq=bar_freq, whatToShow=whatToShow
+        )
+
+        return price_data
+
+
+
+    def broker_get_historical_equity_data_for_instrument(
+            self,
+            instrument_data_with_ib_broker_config: instrumentWithIBConfigData,
+            bar_freq: Frequency = DAILY_PRICE_FREQ,
+            whatToShow="TRADES",
+    ) -> pd.DataFrame:
+        """
+        Get historical daily data
+
+        :param contract_object_with_ib_broker_config: contract where instrument has ib metadata
+        :param freq: str; one of D, H, 5M, M, 10S, S
+        :return: futuresContractPriceData
+        """
+
+        ibcontract = ib_equity_instrument(
+            instrument_data_with_ib_broker_config
+        )
+
+        price_data = self._get_generic_data_for_contract(
+            ibcontract, log=self.log, bar_freq=bar_freq, whatToShow=whatToShow
         )
 
         return price_data

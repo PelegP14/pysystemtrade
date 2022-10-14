@@ -2,7 +2,7 @@ from syscore.dateutils import Frequency, DAILY_PRICE_FREQ, MIXED_FREQ
 from syscore.objects import missing_contract, missing_data, failure
 
 from sysbrokers.IB.ib_futures_contracts_data import ibFuturesContractData
-from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
+from sysbrokers.IB.ib_instruments_data import ibInstrumentData
 from sysbrokers.IB.ib_translate_broker_order_objects import sign_from_BS, ibBrokerOrder
 from sysbrokers.IB.ib_connection import connectionIB
 from sysbrokers.IB.client.ib_price_client import tickerWithBS, ibPriceClient
@@ -101,8 +101,8 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
         return ibFuturesContractData(self.ibconnection, log=self.log)
 
     @property
-    def futures_instrument_data(self) -> ibFuturesInstrumentData:
-        return ibFuturesInstrumentData(self.ibconnection, log=self.log)
+    def futures_instrument_data(self) -> ibInstrumentData:
+        return ibInstrumentData(self.ibconnection, log=self.log)
 
     def has_merged_price_data_for_contract(self, futures_contract: futuresContract) -> bool:
         """

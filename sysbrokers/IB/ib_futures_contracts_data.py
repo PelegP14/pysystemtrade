@@ -1,5 +1,5 @@
 from sysbrokers.IB.client.ib_contracts_client import ibContractsClient
-from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
+from sysbrokers.IB.ib_instruments_data import ibInstrumentData
 from sysbrokers.IB.ib_connection import connectionIB
 
 from sysbrokers.broker_futures_contract_data import brokerFuturesContractData
@@ -47,8 +47,8 @@ class ibFuturesContractData(brokerFuturesContractData):
         return client
 
     @property
-    def ib_futures_instrument_data(self) -> ibFuturesInstrumentData:
-        return ibFuturesInstrumentData(self.ibconnection, log=self.log)
+    def ib_futures_instrument_data(self) -> ibInstrumentData:
+        return ibInstrumentData(self.ibconnection, log=self.log)
 
     def get_contract_object_with_IB_data(
         self, futures_contract: futuresContract, allow_expired: bool = False

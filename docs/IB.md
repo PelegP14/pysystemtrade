@@ -183,8 +183,8 @@ ib_futures_contract_data.get_trading_hours_for_contract(contract)
 ### Instruments data
 
 ```
-from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
-ib_futures_instrument_data = ibFuturesInstrumentData(conn)
+from sysbrokers.IB.ib_instruments_data import ibInstrumentData
+ib_futures_instrument_data = ibInstrumentData(conn)
 ib_futures_instrument_data.get_list_of_instruments()
 ib_futures_instrument_data.get_futures_instrument_object_with_IB_data("EDOLLAR") # again used by other functions to get the 'metadata' to map into IB instruments
 ib_futures_instrument_data.get_brokers_instrument_code("EDOLLAR") # reverse of next function

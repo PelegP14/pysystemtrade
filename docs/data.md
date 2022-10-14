@@ -595,7 +595,7 @@ Generic data storage objects, used in both production and backtesting:
         - `arcticFuturesContractPriceData`
     - `futuresInstrumentData`
         - `csvFuturesInstrumentData`
-        - `ibFuturesInstrumentData`
+        - `ibInstrumentData`
         - `mongoFuturesInstrumentData`
     - `futuresMultiplePricesData`
         - `csvFuturesMultiplePricesData`

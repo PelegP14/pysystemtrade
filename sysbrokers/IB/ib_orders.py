@@ -5,7 +5,7 @@ from copy import copy
 import datetime
 
 from sysbrokers.IB.ib_futures_contracts_data import ibFuturesContractData
-from sysbrokers.IB.ib_instruments_data import ibFuturesInstrumentData
+from sysbrokers.IB.ib_instruments_data import ibInstrumentData
 from sysbrokers.IB.ib_translate_broker_order_objects import (
     create_broker_order_from_trade_with_contract,
     ibBrokerOrder,
@@ -132,8 +132,8 @@ class ibExecutionStackData(brokerExecutionStackData):
         return ibFuturesContractData(self.ibconnection)
 
     @property
-    def futures_instrument_data(self) -> ibFuturesInstrumentData:
-        return ibFuturesInstrumentData(self.ibconnection)
+    def futures_instrument_data(self) -> ibInstrumentData:
+        return ibInstrumentData(self.ibconnection)
 
     def get_list_of_broker_orders_with_account_id(
         self, account_id: str = arg_not_supplied
