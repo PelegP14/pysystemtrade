@@ -1,0 +1,258 @@
+
+================================================================================
+================================================================================
+
+This log file is located at:
+
+    C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\program\Logs\IBC-3.14.0_GATEWAY-1012_WEDNESDAY.txt
+
+
+================================================================================
+
+Starting IBC version 3.14.0 on Wed 10/12/2022 at 17:28:28.81
+
+Operating system:  Microsoft Windows 10 Home  64-bit          10.0.19044  
+
+Arguments:
+
+TWS version = 1012
+Entry point = ibcalpha.ibc.IbcGateway
+/TwsPath = C:\Jts
+/TwsSettingsPath = 
+/IbcPath = C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\program
+/Config = C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\settings\config.ini
+/Mode = 
+/JavaPath = 
+/User =
+/PW =
+/FIXUser =
+/FIXPW =
+
+=================================
+
+Generating the classpath
+Classpath=C:\Jts\1012\jars\jts4launch-1012.jar;C:\Jts\1012\jars\jxbrowser-7.26.jar;C:\Jts\1012\jars\jxbrowser-swing-7.26.jar;C:\Jts\1012\jars\jxbrowser-win64-7.26.jar;C:\Jts\1012\jars\locales.jar;C:\Jts\1012\jars\log4j-api-2.17.1.jar;C:\Jts\1012\jars\log4j-core-2.17.1.jar;C:\Jts\1012\jars\total-2020.jar;C:\Jts\1012\jars\twslaunch-1012.jar;C:\Jts\1012\jars\twslaunch-install4j-1.11.jar;C:\Jts\1012\.install4j\i4jruntime.jar;C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\program\IBC.jar
+
+Generating the JAVA VM options
+Java VM Options= -Xmx768m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:ParallelGCThreads=20 -XX:ConcGCThreads=5 -XX:InitiatingHeapOccupancyPercent=70 -Dinstaller.uuid=07ff4afb-bdd1-469a-ba3d-783724600362 -DvmOptionsPath=C:\Jts\1012\tws.vmoptions -Dsun.awt.nopixfmt=true -Dsun.java2d.noddraw=true -Dswing.boldMetal=false -Dsun.locale.formatasdefault=true -Dtwslaunch.autoupdate.serviceImpl=com.ib.tws.twslaunch.install4j.Install4jAutoUpdateService -Dchannel=latest -Dexe4j.isInstall4j=true  -Dinstall4jType=standalone 
+
+Determining the location of java.exe 
+Location of java.exe=c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\bin
+
+Starting IBC with this command:
+"c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\bin\java.exe" -cp  "C:\Jts\1012\jars\jts4launch-1012.jar;C:\Jts\1012\jars\jxbrowser-7.26.jar;C:\Jts\1012\jars\jxbrowser-swing-7.26.jar;C:\Jts\1012\jars\jxbrowser-win64-7.26.jar;C:\Jts\1012\jars\locales.jar;C:\Jts\1012\jars\log4j-api-2.17.1.jar;C:\Jts\1012\jars\log4j-core-2.17.1.jar;C:\Jts\1012\jars\total-2020.jar;C:\Jts\1012\jars\twslaunch-1012.jar;C:\Jts\1012\jars\twslaunch-install4j-1.11.jar;C:\Jts\1012\.install4j\i4jruntime.jar;C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\program\IBC.jar"  -Xmx768m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:ParallelGCThreads=20 -XX:ConcGCThreads=5 -XX:InitiatingHeapOccupancyPercent=70 -Dinstaller.uuid=07ff4afb-bdd1-469a-ba3d-783724600362 -DvmOptionsPath=C:\Jts\1012\tws.vmoptions -Dsun.awt.nopixfmt=true -Dsun.java2d.noddraw=true -Dswing.boldMetal=false -Dsun.locale.formatasdefault=true -Dtwslaunch.autoupdate.serviceImpl=com.ib.tws.twslaunch.install4j.Install4jAutoUpdateService -Dchannel=latest -Dexe4j.isInstall4j=true  -Dinstall4jType=standalone  ibcalpha.ibc.IbcGateway "C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\settings\config.ini"  
+
+IBC Settings:
+    AcceptBidAskLastSizeDisplayUpdateNotification=
+    AcceptIncomingConnectionAction=manual
+    AcceptNonBrokerageAccountWarning=no
+    AllowBlindTrading=no
+    AutoLogoffTime=
+    BindAddress=
+    ClosedownAt=
+    CommandPrompt=
+    CommandServerPort=0
+    ConfirmCryptoCurrencyOrders=manual
+    ControlFrom=
+    DismissNSEComplianceNotice=yes
+    DismissPasswordExpiryWarning=no
+    ExistingSessionDetectedAction=manual
+    ExitAfterSecondFactorAuthenticationTimeout=no
+    FIX=no
+    FIXLoginId=***
+    FIXPassword=***
+    IbAutoClosedown=yes
+    IbDir=
+    IbLoginId=***
+    IbPassword=***
+    LogStructureScope=known
+    LogStructureWhen=never
+    LoginDialogDisplayTimeout=60
+    MinimizeMainWindow=no
+    OverrideTwsApiPort=
+    ReadOnlyApi=
+    ReadOnlyLogin=no
+    ReloginAfterSecondFactorAuthenticationTimeout=no
+    SaveTwsSettingsAt=
+    SecondFactorAuthenticationExitInterval=
+    SecondFactorAuthenticationTimeout=180
+    SecondFactorDevice=
+    SendMarketDataInLotsForUSstocks=
+    StoreSettingsOnServer=
+    SuppressInfoMessages=yes
+    TradingMode=live
+End IBC Settings
+
+2022-10-12 17:28:29:172 IBC: Version: 3.14.0
+System Properties
+------------------------------------------------------------
+swing.boldMetal = false
+java.runtime.name = Java(TM) SE Runtime Environment
+sun.boot.library.path = c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\bin
+java.vm.version = 25.202-b08
+sun.awt.nopixfmt = true
+vmOptionsPath = C:\Jts\1012\tws.vmoptions
+java.vm.vendor = Oracle Corporation
+java.vendor.url = http://java.oracle.com/
+path.separator = ;
+java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+file.encoding.pkg = sun.io
+user.country = IL
+user.script = 
+sun.java.launcher = SUN_STANDARD
+sun.os.patch.level = 
+java.vm.specification.name = Java Virtual Machine Specification
+user.dir = C:\Jts
+java.runtime.version = 1.8.0_202-b08
+java.awt.graphicsenv = sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs = c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\endorsed
+os.arch = amd64
+java.io.tmpdir = C:\Users\panov\AppData\Local\Temp\
+line.separator = 
+
+java.vm.specification.vendor = Oracle Corporation
+user.variant = 
+os.name = Windows 10
+sun.java2d.noddraw = true
+sun.jnu.encoding = Cp1252
+java.library.path = c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\Webdrivers\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files (x86)\Common Files\Pulse Secure\TNC Client Plugin\;C:\Program Files\Java\jdk-12.0.1\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Python27\;C:\Python27\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDO;.
+java.specification.name = Java Platform API Specification
+java.class.version = 52.0
+sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+exe4j.isInstall4j = true
+os.version = 10.0
+user.home = C:\Users\panov
+user.timezone = Asia/Jerusalem
+installer.uuid = 07ff4afb-bdd1-469a-ba3d-783724600362
+java.awt.printerjob = sun.awt.windows.WPrinterJob
+file.encoding = Cp1255
+java.specification.version = 1.8
+java.class.path = C:\Jts\1012\jars\jts4launch-1012.jar;C:\Jts\1012\jars\jxbrowser-7.26.jar;C:\Jts\1012\jars\jxbrowser-swing-7.26.jar;C:\Jts\1012\jars\jxbrowser-win64-7.26.jar;C:\Jts\1012\jars\locales.jar;C:\Jts\1012\jars\log4j-api-2.17.1.jar;C:\Jts\1012\jars\log4j-core-2.17.1.jar;C:\Jts\1012\jars\total-2020.jar;C:\Jts\1012\jars\twslaunch-1012.jar;C:\Jts\1012\jars\twslaunch-install4j-1.11.jar;C:\Jts\1012\.install4j\i4jruntime.jar;C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\program\IBC.jar
+user.name = panov
+channel = latest
+java.vm.specification.version = 1.8
+sun.java.command = ibcalpha.ibc.IbcGateway C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\settings\config.ini
+java.home = c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64
+sun.arch.data.model = 64
+user.language = he
+java.specification.vendor = Oracle Corporation
+awt.toolkit = sun.awt.windows.WToolkit
+java.vm.info = mixed mode
+java.version = 1.8.0_202
+java.ext.dirs = c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+sun.boot.class.path = c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\resources.jar;c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\rt.jar;c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\sunrsasign.jar;c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\jsse.jar;c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\jce.jar;c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\charsets.jar;c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\lib\jfr.jar;c:\users\panov\appdata\local\programs\common\i4j_jres\oda-jk0qgtemvssflllp\1.8.0_202_64\classes
+java.vendor = Oracle Corporation
+file.separator = \
+twslaunch.autoupdate.serviceImpl = com.ib.tws.twslaunch.install4j.Install4jAutoUpdateService
+java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+install4jType = standalone
+sun.io.unicode.encoding = UnicodeLittle
+sun.cpu.endian = little
+sun.desktop = windows
+sun.locale.formatasdefault = true
+sun.cpu.isalist = amd64
+------------------------------------------------------------
+2022-10-12 17:28:29:177 IBC: Using default settings provider: ini file is C:\Users\panov\PycharmProjects\pysystemtrade\ib_gateway\IBC\settings\config.ini
+2022-10-12 17:28:29:177 IBC: Using default login manager: getting username and password from args but not found. Will get from settings
+2022-10-12 17:28:29:177 IBC: Using default main window manager: constructor parameter isGateway=true
+2022-10-12 17:28:29:177 IBC: Using default trading mode manager: constructor parameter args but trading mode not present - will be taken from settings
+2022-10-12 17:28:29:178 IBC: Using default config dialog manager
+2022-10-12 17:28:29:181 IBC: CommandServer is not started because the port is not configured
+2022-10-12 17:28:29:242 IBC: TWS Settings directory is: C:\Jts
+2022-10-12 17:28:29:247 IBC: Ensuring C:\Jts\jts.ini contains required minimal lines
+2022-10-12 17:28:29:247 IBC: Found setting: [Logon]/s3store=true
+2022-10-12 17:28:29:247 IBC: Found setting: [Logon]/Locale=en
+2022-10-12 17:28:29:247 IBC: Found setting: [Logon]/displayedproxymsg=1
+2022-10-12 17:28:29:247 IBC: Found setting: [Logon]/UseSSL=true
+2022-10-12 17:28:29:247 IBC: Found setting: [IBGateway]/ApiOnly=true
+2022-10-12 17:28:29:247 IBC: Confirmed C:\Jts\jts.ini contains required minimal lines
+2022-10-12 17:28:29:248 IBC: Starting session: will exit if login dialog is not displayed within 60 seconds
+2022-10-12 17:28:32:584 IBC: Detected frame entitled: Interactive Brokers Gateway; event=Activated
+2022-10-12 17:28:32:592 IBC: Detected frame entitled: Interactive Brokers Gateway; event=Focused
+2022-10-12 17:28:32:593 IBC: Detected frame entitled: Interactive Brokers Gateway; event=Opened
+2022-10-12 17:28:32:594 IBC: Trading mode from settings: tradingMode=live
+2022-10-12 17:28:32:594 IBC: Setting Trading mode = live
+2022-10-12 17:28:32:683 IBC: Login attempt: 1
+2022-10-12 17:28:32:702 IBC: Click button: Log In
+2022-10-12 17:28:34:048 IBC: Detected frame entitled: Interactive Brokers Gateway; event=Lost focus
+2022-10-12 17:28:34:048 IBC: Detected frame entitled: Interactive Brokers Gateway; event=Deactivated
+2022-10-12 17:28:34:049 IBC: Detected frame entitled: Loading...; event=Activated
+2022-10-12 17:28:34:058 IBC: Detected frame entitled: Loading...; event=Focused
+2022-10-12 17:28:34:058 IBC: Detected frame entitled: Loading...; event=Opened
+2022-10-12 17:28:34:058 IBC: Found Gateway main window
+2022-10-12 17:28:34:599 IBC: Detected frame entitled: Loading...; event=Lost focus
+2022-10-12 17:28:34:600 IBC: Detected frame entitled: Loading...; event=Deactivated
+2022-10-12 17:28:34:600 IBC: Detected frame entitled: Authenticating...; event=Activated
+2022-10-12 17:28:34:604 IBC: Detected frame entitled: Authenticating...; event=Focused
+2022-10-12 17:28:34:604 IBC: Detected frame entitled: Authenticating...; event=Opened
+2022-10-12 17:28:35:437 IBC: Detected frame entitled: Authenticating...; event=Lost focus
+2022-10-12 17:28:35:438 IBC: Detected frame entitled: Authenticating...; event=Deactivated
+2022-10-12 17:28:35:438 IBC: Detected dialog entitled: Second Factor Authentication; event=Activated
+2022-10-12 17:28:35:441 IBC: Detected dialog entitled: Second Factor Authentication; event=Focused
+2022-10-12 17:28:35:442 IBC: Detected dialog entitled: Second Factor Authentication; event=Opened
+2022-10-12 17:28:35:442 IBC: Second Factor Authentication initiated
+2022-10-12 17:28:41:868 IBC: Detected dialog entitled: Second Factor Authentication; event=Lost focus
+2022-10-12 17:28:41:869 IBC: Detected dialog entitled: Second Factor Authentication; event=Deactivated
+2022-10-12 17:28:41:869 IBC: Detected frame entitled: Authenticating...; event=Activated
+2022-10-12 17:28:41:870 IBC: Detected frame entitled: Authenticating...; event=Focused
+2022-10-12 17:28:41:870 IBC: Detected dialog entitled: Second Factor Authentication; event=Closed
+2022-10-12 17:28:41:871 IBC: Duration since login: 9 seconds
+2022-10-12 17:28:41:871 IBC: If login has not completed, IBC will exit in 40 seconds
+LogModuleConfigurator-Init: Log4j Ver2.x found on classpath
+LogModuleConfigurator-Init: LogModuleConfigurator initialized with Log4j Verd.x
+2022-10-12 17:28:44:979 IBC: Detected frame entitled: Starting application...; event=Lost focus
+2022-10-12 17:28:44:980 IBC: Detected frame entitled: Starting application...; event=Focused
+2022-10-12 17:28:44:982 IBC: Detected frame entitled: Starting application...; event=Lost focus
+2022-10-12 17:28:44:982 IBC: Detected frame entitled: Starting application...; event=Deactivated
+2022-10-12 17:28:44:982 IBC: Detected frame entitled: IB Gateway; event=Activated
+2022-10-12 17:28:44:987 IBC: Detected frame entitled: IB Gateway; event=Focused
+2022-10-12 17:28:44:987 IBC: Detected frame entitled: Starting application...; event=Closed
+2022-10-12 17:28:44:987 IBC: Login has completed
+2022-10-12 17:28:46:687 IBC: Detected frame entitled: IB Gateway; event=Lost focus
+2022-10-12 17:28:46:687 IBC: Detected frame entitled: IB Gateway; event=Deactivated
+remove Client 999
+2022-10-12 17:30:52:486 IBC: Detected frame entitled: IB Gateway; event=Activated
+2022-10-12 17:30:52:486 IBC: Detected frame entitled: IB Gateway; event=Focused
+2022-10-12 17:30:52:494 IBC: Detected frame entitled: IB Gateway; event=Lost focus
+2022-10-12 17:30:52:494 IBC: Detected frame entitled: IB Gateway; event=Deactivated
+2022-10-12 17:30:52:494 IBC: Detected dialog entitled: API client needs write access action confirmation; event=Activated
+2022-10-12 17:30:52:498 IBC: Detected dialog entitled: API client needs write access action confirmation; event=Focused
+2022-10-12 17:30:52:499 IBC: Detected dialog entitled: API client needs write access action confirmation; event=Opened
+2022-10-12 17:30:56:711 IBC: Detected dialog entitled: U10390046 TWS Configuration; event=Opened
+2022-10-12 17:30:56:715 IBC: Detected dialog entitled: API client needs write access action confirmation; event=Lost focus
+2022-10-12 17:30:56:716 IBC: Detected dialog entitled: API client needs write access action confirmation; event=Deactivated
+2022-10-12 17:30:56:716 IBC: Detected frame entitled: IB Gateway; event=Activated
+2022-10-12 17:30:56:720 IBC: Detected frame entitled: IB Gateway; event=Focused
+2022-10-12 17:30:56:720 IBC: Detected dialog entitled: API client needs write access action confirmation; event=Closed
+2022-10-12 17:30:59:175 IBC: Detected frame entitled: IB Gateway; event=Lost focus
+2022-10-12 17:30:59:175 IBC: Detected frame entitled: IB Gateway; event=Deactivated
+2022-10-12 17:30:59:175 IBC: Detected dialog entitled: U10390046 TWS Configuration; event=Activated
+2022-10-12 17:30:59:178 IBC: Detected dialog entitled: U10390046 TWS Configuration; event=Focused
+2022-10-12 17:31:04:284 IBC: Detected dialog entitled: U10390046 TWS Configuration; event=Lost focus
+2022-10-12 17:31:04:284 IBC: Detected dialog entitled: U10390046 TWS Configuration; event=Deactivated
+2022-10-12 17:31:04:285 IBC: Detected frame entitled: IB Gateway; event=Activated
+2022-10-12 17:31:04:287 IBC: Detected frame entitled: IB Gateway; event=Focused
+2022-10-12 17:31:04:287 IBC: Detected dialog entitled: U10390046 TWS Configuration; event=Closed
+2022-10-12 17:31:06:267 IBC: Detected frame entitled: IB Gateway; event=Lost focus
+2022-10-12 17:31:06:267 IBC: Detected frame entitled: IB Gateway; event=Deactivated
+remove Client 999
+remove Client 999
+2022-10-12 23:40:30:288 IBC: Detected frame entitled: U10390046 Exit Session Setting; event=Activated
+2022-10-12 23:40:30:292 IBC: Detected frame entitled: U10390046 Exit Session Setting; event=Focused
+2022-10-12 23:40:30:292 IBC: Detected frame entitled: U10390046 Exit Session Setting; event=Opened
+2022-10-12 23:45:00:400 IBC: Detected frame entitled: U10390046 Exit Session Setting; event=Lost focus
+2022-10-12 23:45:00:400 IBC: Detected frame entitled: U10390046 Exit Session Setting; event=Deactivated
+2022-10-12 23:45:00:400 IBC: Detected dialog entitled: Shutdown progress; event=Activated
+2022-10-12 23:45:00:402 IBC: Detected dialog entitled: Shutdown progress; event=Focused
+2022-10-12 23:45:00:402 IBC: Detected dialog entitled: Shutdown progress; event=Opened
+2022-10-12 23:45:00:403 IBC: Detected frame entitled: U10390046 Exit Session Setting; event=Closed
+2022-10-12 23:45:00,896 JTS-IA Stopper-131 ERROR Attempted to append to non-started appender d
+2022-10-12 23:45:00,897 NIA-Input-Queue-2 ERROR Attempted to append to non-started appender d
+2022-10-12 23:45:00,898 NIA-Input-Queue-2 ERROR Attempted to append to non-started appender d
+2022-10-12 23:45:01,023 NIA-Input-Queue-2 ERROR Attempted to append to non-started appender d
+2022-10-12 23:45:01,542 pool-3-thread-1 ERROR Attempted to append to non-started appender f
+
+Gateway finished at Wed 10/12/2022 23:45:02.23
+
+IBC running GATEWAY 1012 has finished at Wed 10/12/2022 23:45:02.24
+
