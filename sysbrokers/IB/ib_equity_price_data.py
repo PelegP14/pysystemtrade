@@ -123,11 +123,11 @@ class ibEquityPriceData(brokerEquityPriceData):
 
         return list_of_instruments
 
-    def get_contracts_with_merged_price_data(self):
+    def get_equities_with_merged_price_data(self):
         raise NotImplementedError("Do not use get_contracts_with_price_data with IB")
 
     def get_prices_at_frequency_for_equity(
-        self, instrument_code: str, freq: Frequency = DAILY_PRICE_FREQ
+        self, instrument_code: str, freq: Frequency = DAILY_PRICE_FREQ, return_empty: bool = True
     ) -> equitySpotPrices:
 
         price_data = self._get_prices_at_frequency_for_equity_no_checking(instrument_code, frequency=freq)
@@ -191,6 +191,11 @@ class ibEquityPriceData(brokerEquityPriceData):
             return equitySpotPrices.create_empty()
 
         return equitySpotPrices(price_data)
+
+    def _get_merged_prices_for_equity_no_checking(
+        self, instrument_code: str
+    ) -> equitySpotPrices:
+        raise Exception("Have to get prices from IB with specific frequency")
 
     # def get_ticker_object_for_order(self, order: contractOrder) -> tickerObject:
     #     contract_object = order.futures_contract

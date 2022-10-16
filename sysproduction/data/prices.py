@@ -24,6 +24,10 @@ from sysdata.arctic.arctic_adjusted_prices import (
     arcticFuturesAdjustedPricesData,
     futuresAdjustedPrices,
 )
+from sysdata.arctic.arctic_equity_prices import (
+    arcticEquitySpotPricesData,
+    equitySpotPrices,
+)
 from sysdata.arctic.arctic_spreads import (
     arcticSpreadsForInstrumentData,
     spreadsForInstrumentData,
@@ -33,6 +37,7 @@ from sysdata.mongodb.mongo_futures_contracts import mongoFuturesContractData
 from sysdata.futures.multiple_prices import futuresMultiplePricesData
 from sysdata.futures.adjusted_prices import futuresAdjustedPricesData
 from sysdata.futures.futures_per_contract_prices import futuresContractPriceData
+from sysdata.futures.equity_prices import equitySpotPricesData
 
 from sysdata.data_blob import dataBlob
 
@@ -56,6 +61,7 @@ class diagPrices(productionDataLayerGeneric):
                 arcticFuturesMultiplePricesData,
                 mongoFuturesContractData,
                 arcticSpreadsForInstrumentData,
+                arcticEquitySpotPricesData,
             ]
         )
         return data
@@ -93,6 +99,13 @@ class diagPrices(productionDataLayerGeneric):
 
         return list_of_instruments
 
+    def get_list_of_instruments_in_equity_prices(self) -> list:
+        list_of_instruments = (
+            self.db_equity_spot_prices_data.get_list_of_instruments()
+        )
+
+        return list_of_instruments
+
     def get_multiple_prices(self, instrument_code: str) -> futuresMultiplePrices:
         multiple_prices = self.db_futures_multiple_prices_data.get_multiple_prices(
             instrument_code
@@ -115,6 +128,16 @@ class diagPrices(productionDataLayerGeneric):
     ) -> futuresContractPrices:
         prices = self.db_futures_contract_price_data.\
             get_prices_at_frequency_for_contract_object(contract_object,
+                                                        frequency=frequency)
+
+        return prices
+
+    def get_prices_at_frequency_for_equity(
+            self, instrument_code: str,
+            frequency: Frequency
+    ) -> equitySpotPrices:
+        prices = self.db_equity_spot_prices_data. \
+            get_prices_at_frequency_for_equity(instrument_code,
                                                         frequency=frequency)
 
         return prices
@@ -202,6 +225,10 @@ class diagPrices(productionDataLayerGeneric):
         return self.data.db_futures_adjusted_prices
 
     @property
+    def db_equity_spot_prices_data(self) -> equitySpotPricesData:
+        return self.data.db_equity_spot_prices
+
+    @property
     def db_futures_multiple_prices_data(self) -> futuresMultiplePricesData:
         return self.data.db_futures_multiple_prices
 
@@ -222,6 +249,7 @@ class updatePrices(productionDataLayerGeneric):
                 arcticFuturesMultiplePricesData,
                 mongoFuturesContractData,
                 arcticFuturesAdjustedPricesData,
+                arcticEquitySpotPricesData,
                 arcticSpreadsForInstrumentData,
             ]
         )
@@ -238,6 +266,15 @@ class updatePrices(productionDataLayerGeneric):
                                                                                     futures_price_data=new_prices,
                                                                                     ignore_duplication=True)
 
+    def overwrite_merged_prices_for_equity(
+        self,
+        instrument_code: str,
+        new_prices: equitySpotPrices,
+    ):
+
+        self.db_equity_spot_prices_data.write_merged_prices_for_equity(instrument_code,
+                                                                                    equity_price_data=new_prices,
+                                                                                    ignore_duplication=True)
 
     def update_prices_at_frequency_for_contract(
         self,
@@ -252,6 +289,26 @@ class updatePrices(productionDataLayerGeneric):
             self.db_futures_contract_price_data.update_prices_at_frequency_for_contract(
                 contract_object=contract_object,
                 new_futures_per_contract_prices =new_prices,
+                frequency=frequency,
+                check_for_spike=check_for_spike,
+                max_price_spike = max_price_spike
+            )
+        )
+        return error_or_rows_added
+
+    def update_prices_at_frequency_for_equity(
+        self,
+        instrument_code: str,
+        frequency: Frequency,
+        new_prices: equitySpotPrices,
+        check_for_spike: bool = True,
+        max_price_spike: float = VERY_BIG_NUMBER
+    ) -> int:
+
+        error_or_rows_added = (
+            self.db_equity_spot_prices_data.update_prices_at_frequency_for_equity(
+                instrument_code=instrument_code,
+                new_equity_spot_prices=new_prices,
                 frequency=frequency,
                 check_for_spike=check_for_spike,
                 max_price_spike = max_price_spike
@@ -315,6 +372,10 @@ class updatePrices(productionDataLayerGeneric):
     @property
     def db_spreads_for_instrument_data(self) -> spreadsForInstrumentData:
         return self.data.db_spreads_for_instrument
+
+    @property
+    def db_equity_spot_prices_data(self) -> equitySpotPricesData:
+        return self.data.db_equity_spot_prices
 
 
 INSTRUMENT_CODE_SOURCE_CONFIG = "config"

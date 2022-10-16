@@ -7,6 +7,7 @@ from syscore.objects import arg_not_supplied, missing_data
 from sysdata.data_blob import dataBlob
 
 from sysobjects.futures_per_contract_prices import futuresContractPrices
+from sysobjects.equity_prices import equitySpotPrices
 
 priceFilterConfig = namedtuple('priceFilterConfig',
                                ['ignore_future_prices',
@@ -52,6 +53,56 @@ def apply_price_cleaning(data: dataBlob,
         if new_price_length<price_length:
             log.msg("Ignoring %d prices with zero volumes" % (price_length - new_price_length))
             price_length = new_price_length
+
+    if cleaning_config.ignore_zero_prices:
+        broker_prices = broker_prices.remove_zero_prices()
+        new_price_length = len(broker_prices)
+        if new_price_length<price_length:
+            log.msg("Ignoring %d prices with zero prices" % (price_length - new_price_length))
+            price_length = new_price_length
+
+    if cleaning_config.ignore_negative_prices:
+        broker_prices = broker_prices.remove_negative_prices()
+        new_price_length = len(broker_prices)
+        if new_price_length<price_length:
+            log.warn("Ignoring %d prices with negative prices ****COULD BE REAL PRICES****" % (price_length - new_price_length))
+            price_length = new_price_length ## not used again but for tidiness
+
+
+
+    return broker_prices
+
+def apply_equity_price_cleaning(data: dataBlob,
+                          broker_prices_raw: equitySpotPrices,
+                          cleaning_config = arg_not_supplied,
+                         daily_data: bool = True
+                         ):
+
+    cleaning_config = get_config_for_price_filtering(data =data,
+                                                     cleaning_config=cleaning_config)
+
+    log = data.log
+
+    broker_prices = copy(broker_prices_raw)
+
+    ## It's important that the data is in local time zone so that this works
+    price_length = len(broker_prices)
+    if cleaning_config.ignore_future_prices:
+        broker_prices = broker_prices.remove_future_data()
+        new_price_length = len(broker_prices)
+        if new_price_length<price_length:
+            log.msg("Ignoring %d prices with future timestamps" % (price_length - new_price_length))
+            price_length = new_price_length
+
+    if daily_data:
+        ignore_prices_with_zero_volumes = \
+            cleaning_config.ignore_prices_with_zero_volumes_daily
+    else:
+        ignore_prices_with_zero_volumes = \
+            cleaning_config.ignore_prices_with_zero_volumes_intraday
+
+    if ignore_prices_with_zero_volumes:
+        log.warn("equitySpotPrices doesn't contain volume info so no zero volume cleaning will be done")
 
     if cleaning_config.ignore_zero_prices:
         broker_prices = broker_prices.remove_zero_prices()

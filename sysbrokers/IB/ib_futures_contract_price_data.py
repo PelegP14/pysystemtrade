@@ -167,6 +167,7 @@ class ibFuturesContractPriceData(brokerFuturesContractPriceData):
         raise Exception("Have to get prices from IB with specific frequency")
 
 
+
     def get_prices_at_frequency_for_contract_object(self, contract_object: futuresContract, frequency: Frequency,
                                                     return_empty: bool = True):
 

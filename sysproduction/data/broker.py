@@ -10,6 +10,7 @@ from sysbrokers.broker_capital_data import brokerCapitalData
 from sysbrokers.broker_contract_position_data import brokerContractPositionData
 from sysbrokers.broker_fx_prices_data import brokerFxPricesData
 from sysbrokers.broker_instrument_data import brokerInstrumentData
+from sysbrokers.broker_equity_price_data import brokerEquityPriceData
 
 from syscore.objects import (
     arg_not_supplied,
@@ -20,7 +21,7 @@ from syscore.objects import (
 from syscore.dateutils import Frequency, DAILY_PRICE_FREQ, listOfOpeningTimes
 
 from sysdata.data_blob import dataBlob
-from sysdata.tools.cleaner import apply_price_cleaning
+from sysdata.tools.cleaner import apply_price_cleaning, apply_equity_price_cleaning
 
 from sysexecution.orders.broker_orders import brokerOrder
 from sysexecution.orders.list_of_orders import listOfOrders
@@ -36,6 +37,7 @@ from sysobjects.instruments import InstrumentWithMetaData
 from sysobjects.production.positions import contractPosition, listOfContractPositions
 from sysobjects.spot_fx_prices import fxPrices
 from sysobjects.futures_per_contract_prices import futuresContractPrices
+from sysobjects.equity_prices import equitySpotPrices
 from sysproduction.data.positions import diagPositions
 from sysproduction.data.currency_data import dataCurrency
 from sysproduction.data.control_process import diagControlProcess
@@ -88,6 +90,10 @@ class dataBroker(productionDataLayerGeneric):
     def broker_static_data(self) -> brokerStaticData:
         return self.data.broker_static
 
+    @property
+    def broker_equity_price_data(self) -> brokerEquityPriceData:
+        return self.data.broker_equity_price
+
     ## Methods
 
     def get_list_of_contract_dates_for_instrument_code(self, instrument_code: str):
@@ -135,6 +141,33 @@ class dataBroker(productionDataLayerGeneric):
                                              cleaning_config = cleaning_config)
 
         return broker_prices
+
+    def get_cleaned_prices_at_frequency_for_equity(
+        self, instrument_code: str, frequency: Frequency,
+            cleaning_config = arg_not_supplied
+    ) -> equitySpotPrices:
+
+        broker_prices_raw = \
+                self.get_prices_at_frequency_for_equity(instrument_code=instrument_code,
+                                                         frequency = frequency)
+        daily_data = frequency is DAILY_PRICE_FREQ
+        if broker_prices_raw is missing_data:
+            return missing_data
+
+        broker_prices = apply_equity_price_cleaning(data = self.data,
+                                             daily_data=daily_data,
+                                             broker_prices_raw = broker_prices_raw,
+                                             cleaning_config = cleaning_config)
+
+        return broker_prices
+
+    def get_prices_at_frequency_for_equity(
+        self, instrument_code: str, frequency: Frequency
+    ) -> equitySpotPrices:
+
+        return self.broker_equity_price_data.get_prices_at_frequency_for_equity(instrument_code,
+                                                                                                   frequency,
+                                                                                                   return_empty=False)
 
     def get_prices_at_frequency_for_contract_object(
         self, contract_object: futuresContract, frequency: Frequency

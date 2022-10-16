@@ -46,3 +46,6 @@ class brokerEquityPriceData(equitySpotPricesData):
     ):
         raise NotImplementedError("Broker is a read only source of prices")
 
+    def _write_merged_prices_for_equity_no_checking(self, *args, **kwargs):
+        raise NotImplementedError("Broker is a read only source of prices")
+
